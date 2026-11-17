@@ -1,85 +1,104 @@
-# Function Only Folding
+# Function Folding (Ctrl+M+O)
 
-A Visual Studio Code extension that provides a TypeScript-focused equivalent of Visual Studio's **Collapse to Definitions** command.
+> Fold TypeScript function and method bodies with the familiar Visual Studio `Ctrl+M, Ctrl+O` shortcut.
 
-It folds function bodies while leaving surrounding classes, interfaces, namespaces, and control-flow blocks (`if`, `for`, `while`, `switch`, `try/catch`, etc.) alone.
+## Overview
 
-## Supported syntax
+**Function Folding** is a Visual Studio Code extension for folding function and method bodies in TypeScript and TypeScript React files.
 
-- Function declarations
-- Function expressions
-- Arrow functions, including async arrow functions
-- Class methods
-- Constructors
-- Getters and setters
-- TSX function components
+It identifies function-like syntax using the TypeScript compiler API and folds the corresponding regions without targeting surrounding classes, interfaces, or control-flow blocks.
 
-Only block-bodied functions spanning more than one line are folded. Function signatures without implementations and single-line bodies are skipped.
+### Highlights
+
+- Provides the `Ctrl+M`, then `Ctrl+O` keyboard shortcut.
+- Supports TypeScript (`.ts`) and TypeScript React (`.tsx`).
+- Supports function declarations, function expressions, and arrow functions.
+- Supports class methods, constructors, getters, and setters.
+- Leaves classes, interfaces, and control-flow blocks out of the fold targets.
+- Uses syntax-tree analysis rather than regular expressions.
+- Provides a Command Palette command as an alternative to the keyboard shortcut.
+
+## Folding behavior
+
+The extension targets multiline, block-bodied function-like declarations and expressions. It does not target function signatures without implementations or single-line function bodies.
+
+Classes, interfaces, namespaces, and control-flow statements such as `if`, `for`, `while`, `switch`, and `try/catch` are not selected as independent fold targets.
+
+## Installation
+
+### From the Marketplace
+
+1. Open the Extensions view in VS Code.
+2. Search for **Function Folding (Ctrl+M+O)**.
+3. Select the extension published by **CleanDevelopment** and choose **Install**.
+
+### From a VSIX
+
+For local installation:
+
+```powershell
+code --install-extension function-only-folding-1.0.0.vsix
+```
+
+## Usage
+
+1. Open a TypeScript (`.ts`) or TypeScript React (`.tsx`) file.
+2. Focus the editor.
+3. Press `Ctrl+M`, release the keys, and then press `Ctrl+O`.
+
+Alternatively, open the Command Palette with `Ctrl+Shift+P` and run **Function Folding: Fold All Functions (Ctrl+M+O)**.
 
 ## Keyboard shortcut
 
-On Windows and Linux:
+| Platform | Shortcut | Description |
+|---|---|---|
+| Windows / Linux | `Ctrl+M`, then `Ctrl+O` | Fold function and method bodies in the active TypeScript editor. |
 
-`Ctrl+M`, then `Ctrl+O`
+The shortcut is active when a TypeScript or TypeScript React editor has focus. In other editor contexts, the default `Ctrl+M` behavior is preserved.
 
-The shortcut is active in TypeScript (`.ts`) and TypeScript React (`.tsx`) editors.
+## Commands
 
-You can also run:
+| Command | Description |
+|---|---|
+| `Function Folding: Fold All Functions (Ctrl+M+O)` | Fold detected function and method bodies in the active TypeScript editor. |
 
-**Function Only Folding: Collapse to Definitions**
+## Requirements
 
-from the Command Palette.
+- Visual Studio Code `1.90.0` or later.
+- A TypeScript or TypeScript React editor.
+- Node.js and npm are required only for development and packaging.
 
-## Install from source
+## Privacy
 
-Requirements:
+The extension reads the active TypeScript or TSX document locally to identify function-like syntax. It does not send source code or file contents to a remote service.
 
-- Visual Studio Code
-- Node.js and npm
-- Visual Studio Code Extension Manager (`@vscode/vsce`), installed locally by this project
+## Support
 
-In the extension directory, run:
+Report bugs and request features through the project's GitHub repository:
+
+https://github.com/CleanEngineering/FunctionOnlyFolding_VSCode_Extension/issues
+
+## Development
+
+The extension uses the VS Code Extension API and the TypeScript compiler API to identify function-like syntax and invoke VS Code's native folding command.
+
+To install dependencies, run tests, and package the extension:
 
 ```powershell
-npm install
+npm ci
 npm test
 npm run package
 ```
-
-This creates a `.vsix` package in the project directory. Install it with:
-
-```powershell
-code --install-extension .\function-only-folding-1.0.0.vsix
-```
-
-## Publish to the Visual Studio Code Marketplace
-
-1. Change `publisher` in `package.json` from `your-publisher-id` to your Marketplace publisher ID.
-2. Ensure the extension name, description, repository and author metadata are set as desired.
-3. Create a Personal Access Token with Marketplace publishing permissions.
-4. Sign in and publish:
-
-```powershell
-npx @vscode/vsce login your-publisher-id
-npm run publish
-```
-
-The Marketplace publisher account and Personal Access Token must belong to you; they cannot be embedded in this project.
-
-## Behavior notes
-
-The extension uses the TypeScript compiler parser (AST), not regular expressions. It identifies function-like syntax nodes and asks VS Code's native folding engine to fold at those declaration lines. This avoids treating ordinary control-flow blocks as target fold regions.
-
-The extension does not register a competing folding-range provider and does not change the editor's normal folding behavior.
 
 ## License
 
 MIT. See [LICENSE](LICENSE).
 
+## Publisher
 
-## Extension icon
+Created and maintained by **CleanEngineering**.
 
-The package references `icon.png` in the project root. Replace that file with your own **128 × 128 PNG** icon before publishing. Keep the filename and path exactly as `icon.png`.
+Repository: https://github.com/CleanEngineering/FunctionOnlyFolding_VSCode_Extension
 
 ## Support
 

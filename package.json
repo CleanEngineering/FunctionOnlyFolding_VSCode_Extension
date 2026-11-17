@@ -52,8 +52,8 @@
     "commands": [
       {
         "command": "functionOnlyFolding.collapseToDefinitions",
-        "title": "Ctrl+M+O: Fold All Functions",
-        "category": "Ctrl+M+O"
+        "title": "Fold All Functions (Ctrl+M+O)",
+        "category": "Function Folding"
       }
     ],
     "keybindings": [
