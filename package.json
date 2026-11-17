@@ -2,7 +2,7 @@
   "name": "function-only-folding",
   "displayName": "Ctrl+M+O",
   "description": "Fold TypeScript function and method bodies only, using the Ctrl+M, Ctrl+O shortcut.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "CleanDevelopment",
   "author": {
     "name": "Yahya Ebneddin"
