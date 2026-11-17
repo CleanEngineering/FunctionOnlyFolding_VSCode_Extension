@@ -1,0 +1,95 @@
+{
+  "name": "function-only-folding",
+  "displayName": "Ctrl+M+O",
+  "description": "Fold TypeScript function and method bodies only, using the Ctrl+M, Ctrl+O shortcut.",
+  "version": "1.0.0",
+  "publisher": "CleanDevelopment",
+  "author": {
+    "name": "Yahya Ebneddin"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "icon": "icon.png",
+  "sponsor": {
+    "url": "https://github.com/sponsors/CleanEngineering"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CleanEngineering/FunctionOnlyFolding_VSCode_Extension.git"
+  },
+  "homepage": "https://github.com/CleanEngineering/FunctionOnlyFolding_VSCode_Extension",
+  "bugs": {
+    "url": "https://github.com/CleanEngineering/FunctionOnlyFolding_VSCode_Extension/issues"
+  },
+  "keywords": [
+    "fold",
+    "folding",
+    "collapse",
+    "outlining",
+    "typescript",
+    "typescriptreact",
+    "function",
+    "method",
+    "arrow function",
+    "ctrl+m",
+    "ctrl+m+o"
+  ],
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "galleryBanner": {
+    "color": "#1f2937",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "main": "./extension.js",
+  "activationEvents": [
+    "onCommand:functionOnlyFolding.collapseToDefinitions"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "functionOnlyFolding.collapseToDefinitions",
+        "title": "Ctrl+M+O: Fold All Functions",
+        "category": "Ctrl+M+O"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "-editor.action.toggleTabFocusMode",
+        "key": "ctrl+m"
+      },
+      {
+        "command": "editor.action.toggleTabFocusMode",
+        "key": "ctrl+m",
+        "when": "!editorTextFocus || (editorLangId != typescript && editorLangId != typescriptreact)"
+      },
+      {
+        "command": "functionOnlyFolding.collapseToDefinitions",
+        "key": "ctrl+m ctrl+o",
+        "when": "editorTextFocus && (editorLangId == typescript || editorLangId == typescriptreact)"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "functionOnlyFolding.collapseToDefinitions"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "test": "node --test",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "dependencies": {
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^4.1.1"
+  },
+  "qna": false
+}
